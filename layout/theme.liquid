@@ -17,7 +17,9 @@
 <body>
   <div class="header-toolbar">
     <div class="container clearfix">
-      Tool bar here!
+      <div class="cart-info right">
+        Cart: <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
+      </div>
     </div>
   </div>
   <div class="container">

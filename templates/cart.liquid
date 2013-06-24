@@ -1,1 +1,64 @@
-This is my cart page!
+<h2>Your Cart</h2>
+
+{% if cart.item_count > 0 %}
+
+  <form action="/cart" method="post">
+  
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Product Title</th>
+        <th>Price</td>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>&nbsp;</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+          {% for item in cart.items %}    
+          <tr>
+            <td>
+              <div class="item-thumb">
+                <a href="{{ item.product.url }}">  
+                  <img src="{{ item.product.featured_image.src | product_img_url: 'small' }}" alt="{{ item.title | escape }}" />
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="item-title">
+                <a href="{{ item.product.url | within: collections.all }}">{{ item.title }}</a>
+              </div>
+            </td>
+            <td>{{ item.price | money }}</td>
+            <td>
+              <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" class="item-qty" />
+            </td>
+            <td>{{ item.line_price | money }}</td>
+            <td>
+              <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="cart-options">
+      <h3>Subtotal: {{ cart.total_price | money }}</h3>
+      <input type="submit" name="update" value="Update cart" class="btn" />
+      or
+      <input type="submit" name="checkout" value="Check out" class="btn"   />    
+      {% if additional_checkout_buttons %}
+      <p class="additional-checkout-buttons">
+        {{ content_for_additional_checkout_buttons }}
+      </p>
+      {% endif %}    
+    </div>
+  </form>
+
+{% else %}
+
+You don't have any items in your cart!
+
+{% endif %}
