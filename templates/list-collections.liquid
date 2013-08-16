@@ -1,4 +1,3 @@
-{% paginate collections by 4 %}
 {% assign collections = linklists.featured-collections.links %}
 
 <div class="clearfix" id="collections-listing">
@@ -35,11 +34,3 @@
     <p>Please {{ 'create a link list' | link_to: '/admin/links' }} that contains links to all the collections you wish to feature on this page. The title of that link list must be <strong>Featured Collections</strong>. If you want your collections to be listed alphabetically, reorder them alphabetically on your {{ 'Navigation page' | link_to: '/admin/links' }}.</p>
   {% endif %}
 </div><!-- end of #collection-listing -->
-
-{% if paginate.pages > 1 %}
-<div class="pagination">
-  {{ paginate | default_pagination }}
-</div>
-{% endif %}
-
-{% endpaginate %}
