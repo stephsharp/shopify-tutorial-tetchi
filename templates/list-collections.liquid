@@ -1,30 +1,40 @@
 {% paginate collections by 4 %}
+{% assign collections = linklists.featured-collections.links %}
 
-<div class="clearfix">
+<div class="clearfix" id="collections-listing">
 	{% if collections.size > 0 %}
-    	<h2>Collections</h2>
-	    {% for collection in collections %}
+    	<h2>Product Collections</h2>
+	    {% for link in collections %}
+      {% assign collection = link.object %}
+      {% unless collection.handle == 'frontpage' %}
+        {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
             <div class="product left {% cycle '','','','last' %}">
               <div class="product-thumb">
-                <a href="{{ collection.url  }}">
-					{% if collection.image %}
+                <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+                {% if collection.image %}
 			            {{ collection.image.src | collection_img_url: 'medium' | img_tag: collection_title }}
-                    {% else %}
-				        {{ collection.products.first.featured_image | product_img_url: 'medium' | img_tag: collection_title }}
-                  	{% endif %}              
+                {% else %}
+				          {{ collection.products.first.featured_image | product_img_url: 'medium' | img_tag: collection_title }}
+                {% endif %}
                 </a>
-              </div>
+              </div><!-- end of .product-thumb -->
               <div class="product-title">
-                <a href="{{ collection.url}}">
+                <h3>
+                  <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
                     {{ collection.title }}
                   </a>
-              </div>
-            </div>
-  		{% endfor %}
-    {% else %}
-	    <p>You have no collections!</p>
-    {% endif %}
-</div>
+                  <small class="hint">
+                    {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}
+                  </small>
+                </h3>
+              </div><!-- end of .product-title -->
+          </div><!-- end of .product -->
+    {% endunless %}
+    {% endfor %}
+  {% else %}
+    <p>Please {{ 'create a link list' | link_to: '/admin/links' }} that contains links to all the collections you wish to feature on this page. The title of that link list must be <strong>Featured Collections</strong>. If you want your collections to be listed alphabetically, reorder them alphabetically on your {{ 'Navigation page' | link_to: '/admin/links' }}.</p>
+  {% endif %}
+</div><!-- end of #collection-listing -->
 
 {% if paginate.pages > 1 %}
 <div class="pagination">
