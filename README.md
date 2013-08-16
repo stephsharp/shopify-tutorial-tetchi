@@ -15,7 +15,7 @@ A tutorial series by [**Tetchi**](http://www.tetchi.ca/shopify-theme-from-scratc
 - [Part 7: blog.liquid](http://www.tetchi.ca/shopify-theme-from-scratch-part-7/)
 - [Part 8: article.liquid](http://www.tetchi.ca/shopify-theme-from-scratch-part-8/)
 - [Part 9: search.liquid](http://www.tetchi.ca/shopify-theme-from-scratch-part-9/)
-- Part 10: list-collections.liquid
+- [Part 10: list-collections.liquid](http://www.tetchi.ca/shopify-theme-from-scratch-part-10/)
 - Part 11: Customer Accounts – The Setup
 - Part 12: Customer Accounts 1/2
 - Part 13: Customer Accounts 2/2

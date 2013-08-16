@@ -1,0 +1,35 @@
+{% paginate collections by 4 %}
+
+<div class="clearfix">
+	{% if collections.size > 0 %}
+    	<h2>Collections</h2>
+	    {% for collection in collections %}
+            <div class="product left {% cycle '','','','last' %}">
+              <div class="product-thumb">
+                <a href="{{ collection.url  }}">
+					{% if collection.image %}
+			            {{ collection.image.src | collection_img_url: 'medium' | img_tag: collection_title }}
+                    {% else %}
+				        {{ collection.products.first.featured_image | product_img_url: 'medium' | img_tag: collection_title }}
+                  	{% endif %}              
+                </a>
+              </div>
+              <div class="product-title">
+                <a href="{{ collection.url}}">
+                    {{ collection.title }}
+                  </a>
+              </div>
+            </div>
+  		{% endfor %}
+    {% else %}
+	    <p>You have no collections!</p>
+    {% endif %}
+</div>
+
+{% if paginate.pages > 1 %}
+<div class="pagination">
+  {{ paginate | default_pagination }}
+</div>
+{% endif %}
+
+{% endpaginate %}
