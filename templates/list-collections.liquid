@@ -4,26 +4,32 @@
 	{% if collections.size > 0 %}
     	<h2>Collections</h2>
 	    {% for collection in collections %}
+        {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
             <div class="product left {% cycle '','','','last' %}">
               <div class="product-thumb">
-                <a href="{{ collection.url  }}">
-					{% if collection.image %}
+                <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+                {% if collection.image %}
 			            {{ collection.image.src | collection_img_url: 'medium' | img_tag: collection_title }}
-                    {% else %}
-				        {{ collection.products.first.featured_image | product_img_url: 'medium' | img_tag: collection_title }}
-                  	{% endif %}              
+                {% else %}
+				          {{ collection.products.first.featured_image | product_img_url: 'medium' | img_tag: collection_title }}
+                {% endif %}
                 </a>
-              </div>
+              </div><!-- end of .product-thumb -->
               <div class="product-title">
-                <a href="{{ collection.url}}">
+                <h3>
+                  <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
                     {{ collection.title }}
                   </a>
-              </div>
-            </div>
-  		{% endfor %}
-    {% else %}
-	    <p>You have no collections!</p>
-    {% endif %}
+                  <small class="hint">
+                    {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}
+                  </small>
+                </h3>
+              </div><!-- end of .product-title -->
+          </div><!-- end of .product -->
+    {% endfor %}
+  {% else %}
+    <p>You have no collections!</p>
+  {% endif %}
 </div>
 
 {% if paginate.pages > 1 %}
