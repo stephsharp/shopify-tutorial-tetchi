@@ -1,10 +1,10 @@
+{% assign collection_links = linklists.featured-collections.links %}
 {% paginate collections by 4 %}
-{% assign collections = linklists.featured-collections.links %}
 
 <div class="clearfix" id="collections-listing">
-	{% if collections.size > 0 %}
+	{% if collection_links.size > 0 %}
     	<h2>Product Collections</h2>
-	    {% for link in collections %}
+	    {% for link in collection_links %}
       {% assign collection = link.object %}
       {% unless collection.handle == 'frontpage' %}
         {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
