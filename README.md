@@ -21,3 +21,9 @@ A tutorial series by [**Tetchi**](http://www.tetchi.ca/shopify-theme-from-scratc
 - Part 13: Customer Accounts 2/2
 - Part 14: Theme Settings 1/2
 - Part 15: Theme Settings 2/2
+
+
+## Useful Links
+
+- [A gist that lists all collections in the shop](https://gist.github.com/carolineschnapp/523455) by [carolineschnapp](https://gist.github.com/carolineschnapp)
+- [Shopify Cheat Sheet](http://cheat.markdunkley.com/) by Mark Dunkley
