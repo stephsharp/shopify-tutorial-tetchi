@@ -89,11 +89,12 @@ var selectCallback = function(variant, selector) {
     jQuery('.color.options li').each( function() {
       var variantTitle = selectedSize + " / " + jQuery("div", this).text();
 
-      // if variantTitle is a valid variant, remove unavailable class
-      if (jQuery.inArray(variantTitle, variantTitles) != -1) {
+      // if variantTitle is a valid variant & not sold out, remove unavailable class
+      var variantIndex = jQuery.inArray(variantTitle, variantTitles);
+      if (variantIndex != -1 && variants[variantIndex].available == true) {
         jQuery("span", this).removeClass('unavailable');
       }
-      // if not a valid variant, add unavailable class
+      // if not a valid variant or is sold out, add unavailable class
       else {
         jQuery("span", this).addClass('unavailable');
       }
