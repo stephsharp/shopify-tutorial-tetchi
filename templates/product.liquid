@@ -78,7 +78,7 @@ var selectCallback = function(variant, selector) {
   var selectedSize = jQuery('.size.options li.selected span').text();
 
   if (selectedSize.length > 0) {
-    var variants = selector.selectors[0].multiSelector.product.variants;
+    var variants = selector.product.variants;
     var variantTitles = []
     var i;
 
