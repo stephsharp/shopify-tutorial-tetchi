@@ -18,16 +18,34 @@
   <div class="product-details left">   
     <h2 class="product-title">{{ product.title }}</h2>
     <div class="product-desc rte">{{ product.description }}</div>
-    <div class="price-field"></div>
+    <div class="price-field">
+      {% if product.compare_at_price > product.price %}
+      <del>{{ product.compare_at_price | money_with_currency }}</del>
+      {% endif %}
+      <span>{{ product.price | money_with_currency }}</span>
+    </div>
     <form action="/cart/add" method="post" class="product-form">
-      <div class="product-variants">
-        <select id="product-select" name="id">
-          {% for variant in product.variants %}
-          <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <input type="submit" name="add" value="Purchase" class="btn purchase" />
+      <ul id="product-details" style="list-style-type:none;">
+        {% if product.available %}
+          {% if product.variants.size > 1 %}
+            <li id="product-variants" class="clearfix">
+              <select id="product-select" name="id" class="hidden">
+                {% for variant in product.variants %}
+                <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                {% endfor %}
+              </select>
+            </li>
+          {% else %}
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+          {% endif %}
+
+          {% if product.variants.size > 1 %}
+          <li id="swatches">{% include 'swatches' %}</li>
+          {% endif %}
+        {% endif %}
+
+        <input type="submit" name="add" value="Purchase" class="btn purchase" />
+      </ul><!-- #product-details -->
     </form>
     {% if collection %}
     <div class="product-nav clearflex">
@@ -66,6 +84,16 @@ jQuery(function() {
   jQuery('.selector-wrapper').prepend("<label for='product-select-option-0'>{{ product.options.first }}</label>");
   {% endif %}
 });
+
+// BEGIN SWATCHES
+jQuery('.swatch li').click(function() {
+  var optionValue = jQuery(this).attr('data-option-title'); // what have I just clicked on?
+  jQuery(this).parents('.swatch').find('li').removeClass('selected'); // un-select all the buttons
+  jQuery(this).addClass('selected'); // select the current one
+  jQuery('.single-option-selector:contains(' + optionValue + ')').val(optionValue).trigger('change');
+  return false;
+});
+// END SWATCHES
 // ]]>
 </script>
 
