@@ -74,6 +74,31 @@ var selectCallback = function(variant, selector) {
     var message = variant ? "Sold Out" : "Unavailable";    
     jQuery('.price-field').text(message); // update price-field message
   }
+
+  var selectedSize = jQuery('.size.options li.selected span').text();
+
+  if (selectedSize.length > 0) {
+    var variants = selector.selectors[0].multiSelector.product.variants;
+    var variantTitles = []
+    var i;
+
+    for (i = 0; i < variants.length; i++) {
+      variantTitles.push(variants[i].title);
+    }
+
+    jQuery('.color.options li').each( function() {
+      var variantTitle = selectedSize + " / " + jQuery("div", this).text();
+
+      // if variantTitle is a valid variant, remove unavailable class
+      if (jQuery.inArray(variantTitle, variantTitles) != -1) {
+        jQuery("span", this).removeClass('unavailable');
+      }
+      // if not a valid variant, add unavailable class
+      else {
+        jQuery("span", this).addClass('unavailable');
+      }
+    });
+  }
 };
 
 // initialize multi selector for product
