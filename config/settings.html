@@ -1,3 +1,37 @@
 <fieldset>
-Theme Settings will go here. 
+  <legend>Logo Settings</legend>
+  <table>
+    <tr>
+      <th><label for="logo_file">Logo image</label></th>
+      <td><input type="file" name="logo.png" id="logo_file" data-max-width="500" data-max-height="300" /></td>
+    </tr>
+    <tr>
+      <th><label for="logo_option">Logo option</label></th>
+      <td>
+        <input type="radio" name="logo_option" value="image" /> Uploaded Image
+        <input type="radio" name="logo_option" value="text" /> Text
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Font Settings</legend>
+  <table>
+  <tr>
+    <th><label for="body_font">Body font</label></th>
+    <td>
+      <select class="font" name="body_font" id="body_font"></select>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="body_font_color">Body font color</label></th>
+    <td><input id="body_font_color" name="body_font_color" class="color" value="#000000" /></td>
+  </tr>
+</table>
+</fieldset>
+<fieldset>
+  <legend>Home Page Settings</legend>
+</fieldset>
+<fieldset>
+  <legend>Footer Settings</legend>
 </fieldset>

@@ -40,7 +40,13 @@
     </div>
   </div>
   <div class="container">
-    <h1 class="logo"><a href="/">{{ shop.name }}</a></h1>
+    <h1 class="logo">
+      {% if settings.logo_option == "image" %}
+      <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /></a>
+      {% else %}
+      <a href="/">{{ shop.name }}</a>
+      {% endif %}
+    </h1>
     <nav class="main-menu">
       <ul>
         {% for link in linklists.main-menu.links %}
