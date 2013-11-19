@@ -19,8 +19,8 @@ A tutorial series by [**Tetchi**](http://www.tetchi.ca/shopify-theme-from-scratc
 - [Part 11: Customer Accounts – The Setup](http://www.tetchi.ca/shopify-theme-from-scratch-part-11/)
 - [Part 12: Customer Accounts 1/2](http://www.tetchi.ca/shopify-theme-from-scratch-part-12/)
 - [Part 13: Customer Accounts 2/2](http://www.tetchi.ca/shopify-theme-from-scratch-part-13/)
-- Part 14: Theme Settings 1/2
-- Part 15: Theme Settings 2/2
+- [Part 14: Theme Settings 1/2](http://www.tetchi.ca/shopify-theme-from-scratch-part-14/)
+- [Part 15: Theme Settings 2/2](http://www.tetchi.ca/shopify-theme-from-scratch-part-15/)
 
 
 ## Useful Links
