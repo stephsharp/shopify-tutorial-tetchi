@@ -1,13 +1,17 @@
-{% assign page = pages.frontpage %}
+{% assign page = pages.[settings.frontpage_homepage] %}
+{% if page.handle != "" %}
 <div class="rte index-page">
-  <h2{{ page.title }}</h2>
-  {{ page.content }}
+    <h2>{{ page.title }}</h2>
+    {{ page.content }}
 </div>
+{% endif %}
 
-{% assign collection = collections.frontpage %}
+{% assign collection = collections.[settings.frontpage_collection] %}
+{% if collection.handle != "" %}
 <div class="index-collection clearfix">
   <h2>{{ collection.title }}</h2>
-  {% for product in collection.products | limit:8 %}
-    {% include 'product-loop' %}
-  {% endfor %}
+    {% for product in collections.[collection.handle].products | limit: settings.num_products %}
+      {% include 'product-loop' %}
+    {% endfor %}
 </div>
+{% endif %}
