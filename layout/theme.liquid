@@ -63,6 +63,17 @@
           <li><a href="{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
       </ul>
+      <div class="social">
+        {% if settings.facebook_show %}
+          <a href="{{ settings.facebook_link }}"><img src="{{ 'icon-fb.png' | asset_url }}" /></a>
+        {% endif %}
+        {% if settings.twitter_show %}
+          <a href="{{ settings.twitter_link }}"><img src="{{ 'icon-twitter.png' | asset_url }}" /></a>
+        {% endif %}
+        {% if settings.pinterest_show %}
+          <a href="{{ settings.pinterest_link }}"><img src="{{ 'icon-pinterest.png' | asset_url }}" /></a>
+        {% endif %}
+      </div>
     </footer>
   </div>
 </body>
